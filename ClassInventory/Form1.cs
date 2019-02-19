@@ -12,7 +12,7 @@ namespace ClassInventory
 {
     public partial class Form1 : Form
     {
-        // TODO - create a List to store all inventory objects
+        List<BasketballPlayer> bballPlayers = new List<BasketballPlayer>();
 
         public Form1()
         {
@@ -21,20 +21,37 @@ namespace ClassInventory
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            // TODO - gather all information from screen 
+            // gather all information from screen 
+            string name = nameInput.Text;
+            int age = Convert.ToInt16(ageInput.Text);
+            string team = teamInput.Text;
+            string position = positionInput.Text;
 
-            // TODO - create object with gathered information
+            // create object with gathered information
+            BasketballPlayer player = new BasketballPlayer(name, team, position, age);
 
-            // TODO - add object to global list
+            // add object to global list
+            bballPlayers.Add(player);
 
-            // TODO - display message to indicate addition made
+            // display message to indicate addition made
+            outputLabel.Text = name + " has been added!\n";
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            // TODO - if object is in list remove it
+            // if object is in list remove it
+            for (int i = 0; i < bballPlayers.Count; i++)
+            {
+                if (bballPlayers[i].name == removeInput.Text)
+                {
+                    outputLabel.Text = "";
+                    bballPlayers.RemoveAt(i);
 
-            // TODO - display message to indicate deletion made
+                    // display message to indicate deletion made
+                    outputLabel.Text = removeInput.Text + " has been removed!\n";
+                }
+            }            
+            
         }
 
         private void searchButton_Click(object sender, EventArgs e)
